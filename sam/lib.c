@@ -17,13 +17,10 @@ struct AudioResult speakText(unsigned char pitch,unsigned char speed,unsigned ch
     SetThroat(throat == 0 ? 128 :throat);
     SetMouth(mouth == 0 ? 128 : mouth);
     SetInput(input);
-    int res = SAMMain();
-    char *buf = GetBuffer();
-    int buf_size = GetBufferLength();
     struct AudioResult resp;
-    resp.res = res;
-    resp.buf = buf;
-    resp.buf_size = buf_size;
+    resp.res = SAMMain();
+    resp.buf = GetBuffer();
+    resp.buf_size = GetBufferLength();
     return resp;
 }
 

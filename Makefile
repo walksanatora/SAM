@@ -12,11 +12,14 @@ LIBS = $(patsubst %,$(ODIR)/%,$(_LIBS))
 CFLAGS =  -Wall -Os -fPIC
 LFLAGS =
 
-sam: $(OBJS)
+sam: setup $(OBJS)
 	$(CC) -o $(ODIR)/sam-tts $(OBJS) $(LFLAGS)
 
-lib: $(LIBS)
+lib: setup $(LIBS)
 	$(CC) -shared -o $(ODIR)/libsam.so $(LIBS) $(LFLAGS) -Wl,-soname,libsam.so -fPIC
+
+setup:
+	mkdir -p target/c
 
 $(ODIR)/%.o: $(SDIR)/%.c
 	$(CC) -c -o $@ $< $(CFLAGS)
