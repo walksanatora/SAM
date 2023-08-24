@@ -2,7 +2,7 @@
 #include "reciter.h"
 #include "sam.h"
 
-int debug;
+extern int debug;
 
 struct AudioResult {
     int res;

@@ -16,6 +16,7 @@ struct AudioResult speakText(unsigned char pitch,unsigned char speed,unsigned ch
     SetSpeed(speed == 0 ? 72 : speed);
     SetThroat(throat == 0 ? 128 :throat);
     SetMouth(mouth == 0 ? 128 : mouth);
+    TextToPhonemes((unsigned char*) input);
     SetInput(input);
     struct AudioResult resp;
     resp.res = SAMMain();
