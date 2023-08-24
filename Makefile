@@ -1,20 +1,25 @@
-OBJS = reciter.o sam.o render.o main.o debug.o
-
+_OBJS = reciter.o sam.o render.o main.o debug.o
+_LIBS = reciter.o sam.o render.o lib.o debug.o
 CC = gcc
 
-# libsdl present
-CFLAGS =  -Wall -Os -DUSESDL `sdl-config --cflags`
-LFLAGS = `sdl-config --libs`
+ODIR = target/c
+SDIR = sam
+
+OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
+LIBS = $(patsubst %,$(ODIR)/%,$(_LIBS))
 
 # no libsdl present
-#CFLAGS =  -Wall -Os
-#LFLAGS =
+CFLAGS =  -Wall -Os -fPIC
+LFLAGS =
 
 sam: $(OBJS)
-	$(CC) -o sam $(OBJS) $(LFLAGS)
+	$(CC) -o $(ODIR)/sam-tts $(OBJS) $(LFLAGS)
 
-%.o: src/%.c
-	$(CC) $(CFLAGS) -c $<
+lib: $(LIBS)
+	$(CC) -shared -o $(ODIR)/libsam.so $(LIBS) $(LFLAGS) -Wl,-soname,libsam.so -fPIC
+
+$(ODIR)/%.o: $(SDIR)/%.c
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 package:
 	tar -cvzf sam.tar.gz README.md Makefile sing src/
