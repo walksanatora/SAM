@@ -3,9 +3,6 @@
 #include <ctype.h>
 #include <string.h>
 
-#include "reciter.h"
-#include "sam.h"
-#include "debug.h"
 #include "lib.h"
 
 void WriteWav(char* filename, char* buffer, int bufferlength)

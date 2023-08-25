@@ -1,8 +1,7 @@
-
 #include "reciter.h"
 #include "sam.h"
 
-extern int debug;
+extern int sam_debug;
 
 struct AudioResult {
     int res;

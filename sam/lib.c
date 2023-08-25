@@ -1,14 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <ctype.h>
-#include <string.h>
 
 #include "reciter.h"
 #include "sam.h"
 #include "debug.h"
 #include "lib.h"
 
-int debug = 0;
+int sam_debug = 0;
 
 struct AudioResult speakText(unsigned char pitch,unsigned char speed,unsigned char throat,unsigned char mouth,char *input)
 {
