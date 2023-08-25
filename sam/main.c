@@ -44,27 +44,20 @@ void WriteWav(char* filename, char* buffer, int bufferlength)
 
 int main(int argc, char **argv)
 {
-    int i;
+    int i=0;
 
     char input[256];
-
-    for(i=0; i<256; i++) input[i] = 0;
-
-    i = 1;
-    strncat(input, "amazing test program", 255);
-    strncat(input, " ", 255);
-
-    for(i=0; input[i] != 0; i++)
-        input[i] = toupper((int)input[i]);
-    strncat(input, "[", 255);
-
-    printf("%s",input);
-
-    struct AudioResult resp = speakText(0,0,0,0,input);
+    for(i=0; i<256; i++) input[i] = 0; //Nullify the input buffer
     
+    strncat(input, "amazing test program", 255); //copy the string into the buffer
+    
+    printf("%s\n",input); //send buffer to stdout
+
+    struct AudioResult resp = speakText(0,0,0,0,input); //speak the buffer
+    
+    printf("%s\n",input); //send phoneme output?
     printf("%d",resp.buf_size);
+    
     WriteWav("amazing.wav", resp.buf, resp.buf_size/50);
-
     return 0;
-
 }
