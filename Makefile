@@ -9,16 +9,16 @@ OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 LIBS = $(patsubst %,$(ODIR)/%,$(_LIBS))
 
 # no libsdl present
-CFLAGS =  -Wall -Os -fPIC -I/usr/lib/jvm/java-20-openjdk/include -I/usr/lib/jvm/java-17-openjdk/include/linux
-LFLAGS =
+CFLAGS = -Wall -Os -fPIC -I/usr/lib/jvm/java-20-openjdk/include -I/usr/lib/jvm/java-17-openjdk/include/linux
+LFLAGS = -fPIC
 
-sam: setup $(OBJS)
+sam: target/c $(OBJS)
 	$(CC) -o $(ODIR)/sam-tts $(OBJS) $(LFLAGS)
 
-lib: setup $(LIBS)
-	$(CC) -shared -o $(ODIR)/libsam.so $(LIBS) $(LFLAGS) -Wl,-soname,libsam.so -fPIC
+lib: target/c $(LIBS)
+	$(CC) -shared -o $(ODIR)/libsam.so $(LIBS) $(LFLAGS) -Wl,-soname,libsam.so
 
-setup:
+target/c:
 	mkdir -p target/c
 
 $(ODIR)/%.o: $(SDIR)/%.c

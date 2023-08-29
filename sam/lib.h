@@ -9,4 +9,4 @@ struct AudioResult {
     char *buf;
 };
 
-struct AudioResult speakText(unsigned char pitch,unsigned char speed,unsigned char throat,unsigned char mouth,char *input);
+struct AudioResult* speakText(unsigned char pitch,unsigned char speed,unsigned char throat,unsigned char mouth,char *input);

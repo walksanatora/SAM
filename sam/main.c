@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "lib.h"
 
@@ -47,14 +48,17 @@ int main(int argc, char **argv)
     for(i=0; i<256; i++) input[i] = 0; //Nullify the input buffer
     
     strncat(input, "amazing test program", 255); //copy the string into the buffer
-    
-    printf("%s\n",input); //send buffer to stdout
 
-    struct AudioResult resp = speakText(0,0,0,0,input); //speak the buffer
+    struct AudioResult *resp = speakText(0,0,0,0,input); //speak the buffer
     
-    printf("%s\n",input); //send phoneme output?
-    printf("%d",resp.buf_size);
-    
-    WriteWav("amazing.wav", resp.buf, resp.buf_size/50);
+    fwrite(resp->buf,sizeof(char),resp->buf_size,stdout);
+    fflush(stdout);
+
+    // int bufsize;
+    // for (bufsize=resp->buf_size; bufsize>0; bufsize--) {
+    //     putchar(resp->buf[bufsize]);
+    // }
+
+    WriteWav("amazing.wav", resp->buf, resp->buf_size/50);
     return 0;
 }

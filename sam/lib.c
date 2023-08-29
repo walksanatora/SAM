@@ -1,13 +1,13 @@
 #include <ctype.h>
+#include <string.h>
 
 #include "reciter.h"
 #include "sam.h"
-#include "debug.h"
 #include "lib.h"
 
 int sam_debug = 0;
 
-struct AudioResult speakText(unsigned char pitch,unsigned char speed,unsigned char throat,unsigned char mouth,char *input)
+struct AudioResult* speakText(unsigned char pitch,unsigned char speed,unsigned char throat,unsigned char mouth,char *input)
 {
     int i=0;
     for(i=0; input[i] != 0; i++)
@@ -20,10 +20,10 @@ struct AudioResult speakText(unsigned char pitch,unsigned char speed,unsigned ch
     SetMouth(mouth == 0 ? 128 : mouth);
     TextToPhonemes((unsigned char*) input);
     SetInput(input);
-    struct AudioResult resp;
-    resp.res = SAMMain();
-    resp.buf = GetBuffer();
-    resp.buf_size = GetBufferLength();
+    struct AudioResult *resp = malloc(sizeof(struct AudioResult));
+    resp -> res = SAMMain();
+    resp -> buf = GetBuffer();
+    resp -> buf_size = GetBufferLength();
     return resp;
 }
 
