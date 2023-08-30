@@ -59,8 +59,7 @@ int main(int argc, char **argv)
 
         struct AudioResult *resp = speakText(input); // speak the buffer
 
-        fwrite(resp->buf, sizeof(char), resp->buf_size/50, stdout);
-        WriteWav("test.wav",resp->buf,resp->buf_size/50);
+        fwrite(resp->buf, sizeof(char), resp->buf_size, stdout);
         fflush(stdout);
 
         //aint nobody leaking memory on my watch

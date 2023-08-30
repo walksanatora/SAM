@@ -1,5 +1,5 @@
 _OBJS = reciter.o sam.o render.o main.o debug.o lib.o
-_LIBS = reciter.o sam.o render.o lib.o debug.o jni.o
+_LIBS = reciter.o sam.o render.o lib.o debug.o
 CC = gcc
 
 ODIR = target/c
@@ -9,8 +9,9 @@ OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 LIBS = $(patsubst %,$(ODIR)/%,$(_LIBS))
 
 # no libsdl present
-CFLAGS = -Wall -Os -fPIC -I/usr/lib/jvm/java-20-openjdk/include -I/usr/lib/jvm/java-17-openjdk/include/linux
-LFLAGS = -fPIC
+BFLAGS = -fsanitize=address -g
+CFLAGS = $(BFLAGS) -Wall -Os -fPIC -I/usr/lib/jvm/java-20-openjdk/include -I/usr/lib/jvm/java-17-openjdk/include/linux
+LFLAGS = $(BFLAGS) -fPIC
 
 sam: target/c $(OBJS)
 	$(CC) -o $(ODIR)/sam-tts $(OBJS) $(LFLAGS)

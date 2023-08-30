@@ -31,7 +31,7 @@ struct AudioResult* speakText(char *input)
     struct AudioResult *resp = malloc(sizeof(struct AudioResult));
     resp -> res = SAMMain();
     resp -> buf = GetBuffer();
-    resp -> buf_size = GetBufferLength();
+    resp -> buf_size = GetBufferLength()/50;
     return resp;
 }
 
