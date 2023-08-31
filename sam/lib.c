@@ -7,7 +7,7 @@
 #include "sam.h"
 #include "lib.h"
 
-int sam_debug = 0;
+int sam_debug = 1;
 
 void setupSpeak(unsigned char pitch,unsigned char speed,unsigned char throat,unsigned char mouth) {
     SetPitch(pitch == 0 ? 64 : pitch);

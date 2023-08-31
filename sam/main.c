@@ -46,8 +46,10 @@ int main(int argc, char **argv)
     setupSpeak(0,0,0,0);
     int i;
     char input[256];
+    int stdout_copy = dup(1);
     while (1)
     {
+        
         for (i = 0; i < 256; i++)
             input[i] = 0; // Nullify the input buffer
 
@@ -58,10 +60,11 @@ int main(int argc, char **argv)
         //strncat(input, "amazing test program", 255); // copy the string into the buffer
 
         struct AudioResult *resp = speakText(input); // speak the buffer
-
+        dup2(stdout_copy,1);
         fwrite(resp->buf, sizeof(char), resp->buf_size, stdout);
+        putchar(0);
         fflush(stdout);
-
+        close(1);
         //aint nobody leaking memory on my watch
         free(resp);
     }
