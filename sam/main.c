@@ -43,10 +43,14 @@ void WriteWav(char *filename, char *buffer, int bufferlength)
 
 int main(int argc, char **argv)
 {
-    setupSpeak(0,0,0,0);
+    if (argc != 5) {
+        fprintf(stderr,"%s needs exactly 4 arguments, got %d",argv[0],argc-1);
+        fprintf(stderr,"pitch, speed, throat, mouth");
+        exit(1);
+    }
+    setupSpeak(atoi(argv[1]),atoi(argv[2]),atoi(argv[3]),atoi(argv[4]));
     int i;
     char input[256];
-    int stdout_copy = dup(1);
     while (1)
     {
         
@@ -60,11 +64,8 @@ int main(int argc, char **argv)
         //strncat(input, "amazing test program", 255); // copy the string into the buffer
 
         struct AudioResult *resp = speakText(input); // speak the buffer
-        dup2(stdout_copy,1);
         fwrite(resp->buf, sizeof(char), resp->buf_size, stdout);
-        putchar(0);
         fflush(stdout);
-        close(1);
         //aint nobody leaking memory on my watch
         free(resp);
     }

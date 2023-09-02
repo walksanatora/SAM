@@ -9,7 +9,7 @@ OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 LIBS = $(patsubst %,$(ODIR)/%,$(_LIBS))
 
 # no libsdl present
-BFLAGS = -fsanitize=address -g
+#BFLAGS = -fsanitize=address -g
 CFLAGS = $(BFLAGS) -Wall -Os -fPIC -I/usr/lib/jvm/java-20-openjdk/include -I/usr/lib/jvm/java-17-openjdk/include/linux
 LFLAGS = $(BFLAGS) -fPIC
 
