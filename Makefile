@@ -14,7 +14,7 @@ CFLAGS = $(BFLAGS) -Wall -Os -fPIC -I/usr/lib/jvm/java-20-openjdk/include -I/usr
 LFLAGS = $(BFLAGS) -fPIC
 
 sam: target/c $(OBJS)
-	$(CC) -o $(ODIR)/sam-tts $(OBJS) $(LFLAGS)
+	$(CC) -o $(ODIR)/sam-inline $(OBJS) $(LFLAGS)
 
 lib: target/c $(LIBS)
 	$(CC) -shared -o $(ODIR)/libsam.so $(LIBS) $(LFLAGS) -Wl,-soname,libsam.so
