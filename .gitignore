@@ -1,5 +1,9 @@
 .DS_Store
 
 *.wav
+*.gch
+*.plist
+*.jar
+*.kt
 
 /target
