@@ -4,6 +4,6 @@
 *.gch
 *.plist
 *.jar
-*.kt
+libsam.kt
 
 /target
