@@ -1,6 +1,6 @@
 _OBJS = reciter.o sam.o render.o main.o debug.o lib.o
 _LIBS = reciter.o sam.o render.o lib.o debug.o
-CC = gcc
+CC = x86_64-w64-mingw32-gcc
 
 ODIR = target/c
 SDIR = sam
