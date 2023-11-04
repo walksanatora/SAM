@@ -9,6 +9,7 @@
 
 int sam_debug = 0;
 
+__attribute__((export_name("setup_speak")))
 void setupSpeak(unsigned char pitch,unsigned char speed,unsigned char throat,unsigned char mouth) {
     SetPitch(pitch == 0 ? 64 : pitch);
     SetSpeed(speed == 0 ? 72 : speed);
@@ -16,6 +17,7 @@ void setupSpeak(unsigned char pitch,unsigned char speed,unsigned char throat,uns
     SetMouth(mouth == 0 ? 128 : mouth);
 }
 
+__attribute__((export_name("speak_text")))
 struct AudioResult* speakText(char *input)
 {
     int i;
