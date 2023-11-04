@@ -1,0 +1,18 @@
+Unsupported export type: 0x2
+/usr/lib/node_modules/wasm2lua/node_modules/@webassemblyjs/ast/lib/nodes.js:315
+    throw new Error('typeof id === "string"' + " error: " + ("Argument id must be of type string, given: " + _typeof(id) || "unknown"));
+    ^
+
+Error: typeof id === "string" error: Argument id must be of type string, given: undefined
+    at instr (/usr/lib/node_modules/wasm2lua/node_modules/@webassemblyjs/ast/lib/nodes.js:315:11)
+    at Object.instruction (/usr/lib/node_modules/wasm2lua/node_modules/@webassemblyjs/ast/lib/node-helpers.js:63:27)
+    at /usr/lib/node_modules/wasm2lua/resources/patches/decoder.js:937:32
+    at parseInstructionBlock (/usr/lib/node_modules/wasm2lua/resources/patches/decoder.js:938:12)
+    at parseDataSection (/usr/lib/node_modules/wasm2lua/resources/patches/decoder.js:1287:7)
+    at parseSection (/usr/lib/node_modules/wasm2lua/resources/patches/decoder.js:1625:28)
+    at Object.decode (/usr/lib/node_modules/wasm2lua/resources/patches/decoder.js:1697:25)
+    at Object.decode (/usr/lib/node_modules/wasm2lua/node_modules/@webassemblyjs/wasm-parser/lib/index.js:253:21)
+    at new wasm2lua (/usr/lib/node_modules/wasm2lua/js/index.js:104:42)
+    at Object.<anonymous> (/usr/lib/node_modules/wasm2lua/js/bin/wasm2lua.js:85:12)
+
+Node.js v20.9.0
